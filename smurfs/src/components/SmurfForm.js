@@ -31,6 +31,13 @@ const SmurfForm = props => {
         if(smurfData.name || smurfData.age || smurfData.height) {
             console.log("posting?")
             props.addSmurfCharacter(smurfData)
+
+            setSmurfData({
+                name: "",
+                age: "",
+                height: "",
+            })
+            return
         }
     }
 
@@ -42,6 +49,7 @@ const SmurfForm = props => {
             <form onSubmit={handleSubmit}>
 
                 <TextField 
+                    style={{marginRight: "4px"}}
                     id="filled-basic"
                     variant="filled"
                     label="Name"
@@ -51,6 +59,7 @@ const SmurfForm = props => {
                 />
 
                 <TextField
+                    style={{marginRight: "4px"}}
                     id="filled-basic"
                     variant="filled"
                     label="Age"
@@ -60,6 +69,7 @@ const SmurfForm = props => {
                     onChange={handleChange}
                 />
                 <TextField
+                    style={{marginRight: "4px"}}
                     id="filled-basic"
                     variant="filled"
                     label="Height"
@@ -69,7 +79,7 @@ const SmurfForm = props => {
                     onChange={handleChange}
                 />
 
-                <Button variant="contained" onClick={handleSubmit}>Add</Button>
+                <Button style={{height: "55px"}} disabled={props.isPosting} variant="contained" onClick={handleSubmit}>Add</Button>
                     
             </form>
         </div>
@@ -78,7 +88,7 @@ const SmurfForm = props => {
 
 const mapStatetoProps = state=> {
     return {
-
+        isPosting: state.isFetching,
     }
 }
 

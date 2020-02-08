@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 
 import {removeSmurf} from "../actions"
 
-const SmurfItem = ({ removeSmurf,smurf}) => {
+const SmurfItem = ({ isDeleting,removeSmurf,smurf}) => {
 
     const {name, age, height, id,} = smurf;
 
@@ -22,7 +22,7 @@ const SmurfItem = ({ removeSmurf,smurf}) => {
                 <Typography variant="h3">{name}</Typography>
                 <Typography variant="body1">{age} years old</Typography>
                 <Typography variant="body1">{height}</Typography>
-                <Button color="secondary" onClick={handelRemove}>Remove</Button>
+                <Button color="secondary" disabled={isDeleting} onClick={handelRemove}>Remove</Button>
             </Card>
         </Grid>
     )
@@ -30,7 +30,7 @@ const SmurfItem = ({ removeSmurf,smurf}) => {
 
 const mapStatetoProps = state => {
     return {
-
+        isDeleting: state.isFetching,
     }
 }
 

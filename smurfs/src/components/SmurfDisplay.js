@@ -19,7 +19,7 @@ const SmurfDisplay =  props => {
 
     return (
         <div>
-            <h1>Villagers</h1>
+            <h1>My Villagers</h1>
             <Grid container spacing={3}>
             {props.data.map(smurf=> <SmurfItem key={smurf.id} smurf={smurf}/>)}
             </Grid>
