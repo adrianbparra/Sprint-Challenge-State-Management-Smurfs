@@ -25,3 +25,39 @@ export const ADD_SMURF_SUCCESS = "ADD_SMURF_SUCCESS";
 export const ADD_SMURF_ERROR = "ADD_SMURF_ERROR";
 
 
+export const addSmurfCharacter = data => dispatch => {
+    dispatch({type: ADD_SMURF_START})
+    axios.post("http://localhost:3333/smurfs", data)
+        .then(res => {
+            
+            dispatch({type: ADD_SMURF_SUCCESS, payload: res.data})
+            console.log(res)
+            console.log(res.data)
+
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch({type: ADD_SMURF_ERROR, payload: err})
+        })
+}
+
+
+
+export const REMOVE_SMURF_START = "REMOVE_SMURF_START";
+export const REMOVE_SMURF_SUCCESS = "REMOVE_SMURF_SUCCESS"
+export const REMOVE_SMURF_ERROR = "REMOVE_SMURF_ERROR"
+
+
+export const removeSmurf = id => dispatch =>{
+    dispatch({type: REMOVE_SMURF_START});
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+        .then(res =>{
+            console.log(res)
+            console.log(res.data)
+            dispatch({type: REMOVE_SMURF_SUCCESS, payload: res.data})
+        })
+        .catch(err=>{
+            console.log(err)
+            dispatch({type: REMOVE_SMURF_ERROR, payload: err})
+        })
+}
